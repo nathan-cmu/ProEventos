@@ -1,8 +1,37 @@
 <p>eventos works!</p>
 
-<div *ng-for="let evento of eventos">
-  <h2>{{ evento.tema }}</h2>
-  <p>{{ evento.local }} - {{ evento.dataEvento }}</p>
-  <p>{{ evento.qtdPessoas }} pessoas</p>
-  <hr />
+<div  class="form-inline">
+  <div class="frm-group mb2">
+    <label for="filtroInput" class="mr-sm-2">Procurar Evento: </label>
+    <input type="text" class="form-control mr-sm-2" placeholder="Procurar evento..." [(ngModel)]="filtroLista" name="filtroLista">
+  </div>
 </div>
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Imagem do Evento</th>
+      <th scope="col">Tema</th>
+      <th scope="col">Local</th>
+      <th scope="col">Data do Evento</th>
+      <th scope="col">Qtd Pessoas</th>
+      <th scope="col">Lote</th>
+      <th scope="col">Opções</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ng-for="let evento of eventosFiltrados">
+      <th scope="row">{{ evento.id }}</th>
+      <td><img src="/assets/{{ evento.imagemURL }}" alt="{{ evento.tema }}" width="50"></td>
+      <td>{{ evento.tema }}</td>
+      <td>{{ evento.local }}</td>
+      <td>{{ evento.dataEvento }}</td>
+      <td>{{ evento.qtdPessoas }}</td>
+      <td>{{ evento.lote }}</td>
+      <td>
+        <button class="btn btn-primary">Editar</button>
+        <button class="btn btn-danger">Excluir</button>
+      </td>
+    </tr>
+</table>
